@@ -1,0 +1,37 @@
+import math
+
+def f(x):
+    return math.log(x) - math.atan(x)
+
+def bisection_method(a, b, tol=1e-6, max_iter=100)
+    if f(a) * f(b) >= 0:
+        print("Verilən intervalda kök yoxdur.")
+        return None
+
+    iter_count = 0
+
+    while (b - a) / 2.0 > tol:
+        iter_count += 1
+        c = (a + b) / 2.0  # Yeni orta nöqtə
+
+        if f(c) == 0.0:
+            return c
+
+        if f(a) * f(c) < 0:
+            b = c  # Kök solda, intervalı sol yarıya bölürük
+        else:
+            a = c  # Kök sağda, intervalı sağ yarıya bölürük
+
+        if iter_count > max_iter:
+            print("Maksimum iterasiya sayına çatıldı.")
+            return c
+
+    return (a + b) / 2.0  # Kök təqribən
+
+a = 3.0
+b = 4.0
+
+root = bisection_method(a, b)
+
+if root is not None:
+    print(f"Tənliyin kökü: {root}")
